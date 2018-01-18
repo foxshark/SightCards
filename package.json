@@ -1,0 +1,14 @@
+{
+  "name": "sightcards",
+  "version": "1.0.0",
+  "description": "Basic card game for sight words",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "education"
+  ],
+  "author": "Kyle",
+  "license": "MIT"
+}
