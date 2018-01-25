@@ -3,15 +3,33 @@ html
     title=title
     link(href='//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css', rel='stylesheet')
     link(href="/scripts/base.css", rel="stylesheet")
+    link(href="/scripts/cover.css", rel="stylesheet") 
 
   body
+    div.site-wrapper
+      div.site-wrapper-inner
+        div.cover-container
+          div.masthead.clearfix
+            div.inner
+              h3.masthead-brand SightCards
+              //- nav.nav.nav-masthead
+                a(href="#").nav-link.active Home
+                a(href="#").nav-link Features
+                a(href="#").nav-link Contact
+          div.inner.cover
+            h1#score.cover-heading Listen & play
+            div.button_test
+          div.mastfoot
+            div.inner
+              p A simple proof of concept.
+//-
     div.dumptest  
     div.container
       div.jumbotron#holder
         h1#score Score
         div.button_test
         div.button_field
-    script(src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.0.7/howler.min.js")
-    script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js")
-    script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery-color/2.1.2/jquery.color.js")
-    script(src="/scripts/scratchpad.js")
+script(src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.0.7/howler.min.js")
+script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js")
+script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery-color/2.1.2/jquery.color.js")
+script(src="/scripts/scratchpad.js")

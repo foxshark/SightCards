@@ -77,21 +77,21 @@ $(document).ready(function(){
             if( $(this).attr("value") == answerWord) {
             	numCorrect++;
             	$(this).attr({'disabled': true});
-            	$('#holder')
-				  .animate({backgroundColor:'green'}, 400)
+            	$('#score')
+				  .animate({color:'green'}, 400)
 				  .delay(100)
-				  .animate({backgroundColor:'lightGray'}, 400, function(){
+				  .animate({color:'white'}, 400, function(){
 					answerWord = setUpBoard(words);  	
 				  });
             } else {
             	numWrong++;
             	$(this).attr({'disabled': true});
-            	$('#holder')
-				  .animate({backgroundColor:'red'}, 200)
+            	$('#score')
+				  .animate({color:'red'}, 200)
 				  .delay(30)
-				  .animate({backgroundColor:'lightGray'}, 100);
+				  .animate({color:'white'}, 100);
             }
-            $("#score").html("Score "+numCorrect+"😄:"+numWrong+"😖");
+            $("#score").html("Score "+numCorrect+"😄 "+numWrong+"😖");
         });
 
 
