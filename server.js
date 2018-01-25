@@ -18,6 +18,6 @@ app.get('/', function(req, res) {
 
 app.use(express.static(__dirname + '/public'));
  
-app.listen(3000,function(){
-  console.log("Live at Port 3000");
+app.listen(80,function(){
+  console.log("Live at Port 80");
 });
