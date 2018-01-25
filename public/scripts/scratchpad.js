@@ -2,6 +2,8 @@
 var words = [];
 var sound = null;
 var answerWord = null;
+var numCorrect = 0;
+var numWrong = 0;
 
 $.get("audio/speech_20180106031119366.marks", function(data) {
 	var marks = data.split("\n");
@@ -73,6 +75,7 @@ $(document).ready(function(){
 	$('.button_test').on('click', '.card_btn', function() {
             sound.play($(this).attr("value"));
             if( $(this).attr("value") == answerWord) {
+            	numCorrect++;
             	$(this).attr({'disabled': true});
             	$('#holder')
 				  .animate({backgroundColor:'green'}, 400)
@@ -81,12 +84,14 @@ $(document).ready(function(){
 					answerWord = setUpBoard(words);  	
 				  });
             } else {
+            	numWrong++;
             	$(this).attr({'disabled': true});
             	$('#holder')
 				  .animate({backgroundColor:'red'}, 200)
 				  .delay(30)
 				  .animate({backgroundColor:'lightGray'}, 100);
             }
+            $("#score").html("Score "+numCorrect+"😄:"+numWrong+"😖");
         });
 
 
