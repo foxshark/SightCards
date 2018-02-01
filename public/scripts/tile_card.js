@@ -5,7 +5,7 @@ var answerWord = null;
 var numCorrect = 0;
 var numWrong = 0;
 
-$.get("audio/speech_20180106031119366.marks", function(data) {
+$.get("assets/audio/speech_20180106031119366.marks", function(data) {
 	var marks = data.split("\n");
 	marks.reverse(); //read last to first
 	var markObject = {};
@@ -36,7 +36,7 @@ $.get("audio/speech_20180106031119366.marks", function(data) {
 		//$(".button_field").append('<a class="btn btn-primary" value="'+word.value+'" href="#">'+word.value+'</a> ');//put button
 	});
 	sound = new Howl({
-		src: ['audio/speech_20180106031107913.mp3'],
+		src: ['assets/audio/speech_20180106031107913.mp3'],
 		//autoplay: true,
 		loop: false,
 		volume: 0.5,

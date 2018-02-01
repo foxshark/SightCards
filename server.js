@@ -1,4 +1,5 @@
 var express = require('express');
+var less = require('less');
  
 var app = express();
 var router = express.Router();
@@ -10,7 +11,7 @@ app.set('view engine', 'jade');
 
 
 app.get('/', function(req, res) {
-	res.render('home', {
+	res.render('game_base', {
 		title: 'Welcome'
 	});
   

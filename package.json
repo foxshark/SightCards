@@ -11,5 +11,11 @@
   ],
   "author": "Kyle",
   "license": "MIT",
-  "repository": "github:foxshark/SightCards"
+  "repository": "github:foxshark/SightCards",
+  "dependencies": {
+    "express": "^4.16.2",
+    "howler": "^2.0.8",
+    "jade": "^1.11.0",
+    "less": "^2.7.3"
+  }
 }
