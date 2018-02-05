@@ -35,7 +35,7 @@ var gameLevel = function(level) {
 			loop: false,
 			volume: 0.5,
 			onend: function() {
-				console.log('Finished!');
+				//console.log('Finished!');
 			},
 			sprite: spriteSounds
 		});
@@ -55,6 +55,7 @@ var setUpBoard = function(words){
 		});
 		
 		sound.play(answerWord);
+		gameActive = true;
 
 		return answerWord;
 	}

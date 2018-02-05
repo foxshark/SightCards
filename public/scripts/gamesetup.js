@@ -4,6 +4,8 @@ var sound = null;
 var answerWord = null;
 var numCorrect = 0;
 var numWrong = 0;
+var gameActive = false;
+var currentLevel = 0;
 
 
 $(document).ready(function(){
@@ -14,12 +16,14 @@ $(document).ready(function(){
         });
 
 	$('#scene_game').on('click', '.card_btn', function() {
+		if(gameActive){
+			gameActive = false; //deactivate play controls once selection made
             sound.play($(this).attr("value"));
             if( $(this).attr("value") == answerWord) {
             	numCorrect++;
             	$(this).attr({'disabled': true});
             	console.log('answewrWord = ' + numCorrect);
-            	if(numCorrect >= 10) {
+            	if(numCorrect >= 2) {
             		endLevel();
             	} else {
 					$('#score')
@@ -35,10 +39,13 @@ $(document).ready(function(){
             	$('#score')
 				  .animate({color:'red'}, 200)
 				  .delay(30)
-				  .animate({color:'white'}, 100);
+				  .animate({color:'white'}, 100, function(){
+				  	gameActive = true;
+				  });
             }
             $("#score").html("Score "+numCorrect+"😄 "+numWrong+"😖");
-        });
+        }
+    });
 
 
 	$('#scene_game').on('click', '.btn-success', function() {
@@ -52,10 +59,12 @@ $(document).ready(function(){
         });
 	$('#scene_game').hide();
 	setUpLevels();
+	setUpInventory();
 });
 
 function startLevel(level) {
 	gameLevel(level);
+	currentLevel = level;
 	$('#scene_home').hide();
 	$('#scene_game').show();
 }
@@ -63,10 +72,18 @@ function startLevel(level) {
 function endLevel() {
 	$('#scene_game').hide();
 	$('#scene_home').show();
+	levels[currentLevel].calculateScore(numCorrect, numWrong);
 	numCorrect = 0;
 	numWrong = 0;
 }
 
+function setUpInventory(){
+	$.get("assets/images/sprites/inventory.json", function(data) {
+		$.each(data, function(i, sprite){
+			$("#area_inventory").append('<div class="loot_sprite" style="background-image: url(\'/assets/images/sprites/' + sprite.file_name + '\');"></div>');//put button
+		});
+	});
+}
 
 function setUpLevels(){
 	for(var x = 1; x < 7; x++) {
