@@ -1,4 +1,5 @@
 var levels = [];
+var inventory = [];
 var words = [];
 var sound = null;
 var answerWord = null;
@@ -58,7 +59,7 @@ $(document).ready(function(){
 			startLevel($(this).attr("value"));
         });
 	$('#scene_game').hide();
-	setUpLevels();
+	setUpLevels(5);
 	setUpInventory();
 });
 
@@ -72,21 +73,42 @@ function startLevel(level) {
 function endLevel() {
 	$('#scene_game').hide();
 	$('#scene_home').show();
-	levels[currentLevel].calculateScore(numCorrect, numWrong);
+	console.log("end level: "+currentLevel);
+	levels[(currentLevel-1)].calculateScore(numWrong);
 	numCorrect = 0;
 	numWrong = 0;
 }
 
 function setUpInventory(){
 	$.get("assets/images/sprites/inventory.json", function(data) {
-		$.each(data, function(i, sprite){
-			$("#area_inventory").append('<div class="loot_sprite" style="background-image: url(\'/assets/images/sprites/' + sprite.file_name + '\');"></div>');//put button
+		var items = [];
+		$.each(data, function(i, spriteData){
+			var item = new inventoryItem(spriteData);
+			item.addBlankSpot();
+			items.push(item);
 		});
+
+		var numItems  = data.length;
+		var numLevels = levels.length;
+		var itemsPerLevel = Math.floor(numItems/numLevels);
+		console.log("splitting array into " + numLevels);
+
+		// assign them to levels next
+		items.sort(function(a, b){return 0.5 - Math.random()});
+		for (var i = 0; i<numLevels; i++) {
+			if((i+1 < numLevels)) { //account for odd numbers / remainders
+				var lootGroup = items.slice((i*itemsPerLevel), ((i+1)*itemsPerLevel));	
+			} else {
+				var lootGroup = items.slice((i*itemsPerLevel));	
+			}
+			
+			levels[i].loot = lootGroup;
+		}
 	});
 }
 
-function setUpLevels(){
-	for(var x = 1; x < 7; x++) {
+function setUpLevels(numLevels){
+	for(var x = 1; x < (numLevels + 1); x++) {
 		var card = new levelCard(x);
 		card.addToScene();
 		levels.push(card);
