@@ -11,6 +11,10 @@ function inventoryItem(spriteData) {
 	this.revealItem = function () {
 		$inventorySlot.css("background-image", 'url("' + fileName + '")');
 	}
+
+	this.getSprite = function() {
+		return fileName;
+	}
 /*
 	this.addToScene = function() {
 		var cardContent = $('<a class="btn btn-primary level_btn" value="'+level+'" href="#"><span class="lvl_score">'+displayLevel+'</span></a> ');

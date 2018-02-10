@@ -3,7 +3,15 @@ body {
 	background-image: url("/assets/images/textured_paper.png");
 }
 
+.level_btn {
+	margin: 14px;
+}
+
 #scene_home {
+	border: 3px solid #333;
+}
+
+#scene_loot {
 	border: 3px solid #333;
 }
 
@@ -29,4 +37,46 @@ body {
 	margin: 2px;
 	float: left;
     box-shadow: 2px 2px #444;
+}
+
+.treasure_box {
+	width: 90px;
+	height: 90px;
+	//background-size: 90px 90px;
+	background-repeat: no-repeat;
+	//background-position: center;
+	//background-color: #333;
+	margin: 2px;
+	float: left;
+	background-position: 0px -90px; //default to closed
+}
+
+.treasure_box_1 {
+	background-image: url("/assets/images/treasure_box1.png");
+}
+
+.treasure_box_hero_sprite {
+	width: 90px;
+	height: 90px;
+	background-repeat: no-repeat;
+	background-position: 0px -90px;
+	//background-color: #333;
+	margin: 20px;
+}
+
+.opened {
+	background-position: 0px 0px;
+}
+
+
+.reward_loot_slot {
+	width: 90px;
+	height: 90px;
+	background-size: 90px 90px;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-color: #999;
+	border: 3px dashed #333;
+	margin: 20px;
+	//float: left;
 }

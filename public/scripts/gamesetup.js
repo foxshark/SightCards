@@ -24,7 +24,7 @@ $(document).ready(function(){
             	numCorrect++;
             	$(this).attr({'disabled': true});
             	console.log('answewrWord = ' + numCorrect);
-            	if(numCorrect >= 2) {
+            	if(numCorrect >= 6) {
             		endLevel();
             	} else {
 					$('#score')
@@ -55,11 +55,16 @@ $(document).ready(function(){
         });
 	
 	$('#scene_home').on('click', '.level_btn', function() {
-			//start game
-			startLevel($(this).attr("value"));
+			if(!$(this).hasClass("opened")) {
+				//start game
+				startLevel($(this).attr("value"));
+			} else {
+				return false;
+			}
         });
 	$('#scene_game').hide();
-	setUpLevels(5);
+	$('#scene_loot').hide();
+	setUpLevels(9);
 	setUpInventory();
 });
 
@@ -72,11 +77,25 @@ function startLevel(level) {
 
 function endLevel() {
 	$('#scene_game').hide();
-	$('#scene_home').show();
+	//$('#scene_home').show();
 	console.log("end level: "+currentLevel);
 	levels[(currentLevel-1)].calculateScore(numWrong);
 	numCorrect = 0;
 	numWrong = 0;
+	this.startLoot();
+}
+
+function startLoot() {
+	$('#scene_loot').show();
+	//$('scene_loot').hide();
+	//$('#scene_home').show();
+}
+
+function endLoot() {
+	$("#area_treasure_box").empty();
+	$("#area_loot_reveal").empty();	
+	$('#scene_loot').hide();
+	$('#scene_home').show();	
 }
 
 function setUpInventory(){
