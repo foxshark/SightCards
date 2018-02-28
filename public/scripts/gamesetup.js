@@ -24,19 +24,28 @@ $(document).ready(function(){
             	numCorrect++;
             	$(this).attr({'disabled': true});
             	console.log('answewrWord = ' + numCorrect);
-            	if(numCorrect >= 6) {
+            	if(numCorrect >= 10) {
             		endLevel();
             	} else {
-					$('#score')
-					  .animate({color:'green'}, 400)
-					  .delay(100)
-					  .animate({color:'white'}, 400, function(){
+            		var scorePoint = $('<div class="good_point">*</div>');
+					$("#score").append(scorePoint);//put button
+					//answerWord = setUpBoard(words);  	
+            		
+					scorePoint
+					  .animate({marginLeft: "-2px"}, 200)
+					  .delay(300)
+					  .queue(function(){
+					  	console.log("finished delay");
 						answerWord = setUpBoard(words);  	
 					  });
+					  
             	}
             } else {
             	numWrong++;
-            	$(this).attr({'disabled': true});
+            	$(this).removeClass("card_btn");
+            	$(this).addClass("card_btn_dead");
+            	//or just do this:
+            	$(this).hide();
             	$('#score')
 				  .animate({color:'red'}, 200)
 				  .delay(30)
@@ -44,7 +53,7 @@ $(document).ready(function(){
 				  	gameActive = true;
 				  });
             }
-            $("#score").html("Score "+numCorrect+"😄 "+numWrong+"😖");
+            //$("#score").html("Score "+numCorrect+"😄 "+numWrong+"😖");
         }
     });
 
@@ -71,6 +80,7 @@ $(document).ready(function(){
 function startLevel(level) {
 	gameLevel(level);
 	currentLevel = level;
+	$("#score").empty();
 	$('#scene_home').hide();
 	$('#scene_game').show();
 }
@@ -121,7 +131,7 @@ function setUpInventory(){
 				var lootGroup = items.slice((i*itemsPerLevel));	
 			}
 			
-			levels[i].loot = lootGroup;
+			levels[i].assignLoot(lootGroup);
 		}
 	});
 }

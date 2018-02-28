@@ -3,7 +3,7 @@ html
     title=title
     link(href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm", crossorigin="anonymous", rel='stylesheet')
     link(href="/scripts/game_base.less", rel="stylesheet")
-    link(href="/scripts/cover.css", rel="stylesheet") 
+    //-link(href="/scripts/cover.css", rel="stylesheet") 
 
   body
     div.site-wrapper
@@ -11,26 +11,33 @@ html
         div.cover-container
           div.masthead.clearfix
             div.inner
-              h3.masthead-brand SightCards
+              //-h3.masthead-brand SightCards
               //- nav.nav.nav-masthead
                 a(href="#").nav-link.active Home
                 a(href="#").nav-link Features
                 a(href="#").nav-link Contact
-          div
+          div.row.vertical-center
             //- new stuff
-            div#container.container.inner.cover
+            //-div#container.container.inner.cover
+            div.col-6.offset-3
               div#scene_home.row
                 div#area_level.col-6
                 div#area_inventory.col-6
               div#scene_game
-                h1#score.cover-heading Listen & play
-                div#card_field
+                //-Listen & play
+                div.row
+                  div#card_gui.col-2
+                  div.col-10
+                    h1#score.cover-heading 
+                div#card_field.row
               div#scene_loot.row
                 div#area_treasure_box.col-3
-                div#area_loot_reveal.col-9.row
+                div#area_loot_reveal.col-9
+                //-div#area_loot_reveal.col-9.row
     //-
       h1#score.cover-heading Listen & play
       div.button_test
+  //- 
     div.mastfoot
       div.inner
         p A simple proof of concept.
@@ -42,3 +49,4 @@ script(src="/scripts/gamerules.js")
 script(src="/scripts/gamesetup.js")
 script(src="/scripts/tile_level.js")
 script(src="/scripts/inventory_item.js")
+script(src="/scripts/treasurebox.js")

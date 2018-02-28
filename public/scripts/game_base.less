@@ -1,6 +1,15 @@
 body {
 	background-color: #333;
-	background-image: url("/assets/images/textured_paper.png");
+	//background-image: url("/assets/images/textured_paper.png");
+	background-image: url("/assets/images/grey_wash_wall.png");
+}
+
+.vertical-center {
+  min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 100vh; /* These two lines are counted as one :-)       */
+
+  display: flex;
+  align-items: center;
 }
 
 .level_btn {
@@ -13,11 +22,14 @@ body {
 
 #scene_loot {
 	border: 3px solid #333;
+	background-image: url("/assets/images/desert_tile.png");
 }
 
 #area_level {
 	background-color: #444;
 	padding:10px;
+	//background-image: url("/assets/images/desert_tile.png");
+	background-image: url("/assets/images/textured_paper.png");
 }
 
 #area_inventory {
@@ -28,13 +40,13 @@ body {
 
 .loot_sprite {
 	border: 1px dashed #999;
-	width: 34px;
-	height: 34px;
+	width: 42px;
+	height: 42px;
 	background-size: 32px 32px;
 	background-repeat: no-repeat;
 	background-position: center;
 	background-color: #333;
-	margin: 2px;
+	margin: 8px 8px;
 	float: left;
     box-shadow: 2px 2px #444;
 }
@@ -45,14 +57,18 @@ body {
 	//background-size: 90px 90px;
 	background-repeat: no-repeat;
 	//background-position: center;
-	//background-color: #333;
-	margin: 2px;
+	margin: 20px 4px;
 	float: left;
 	background-position: 0px -90px; //default to closed
 }
 
+.treasure_box_card {
+	border: 1px dashed #999;
+	background-color: #333;
+}
+
 .treasure_box_1 {
-	background-image: url("/assets/images/treasure_box1.png");
+	background-image: url("/assets/images/treasurebox_sprites/box1.png");
 }
 
 .treasure_box_hero_sprite {
@@ -77,6 +93,68 @@ body {
 	background-position: center;
 	background-color: #999;
 	border: 3px dashed #333;
-	margin: 20px;
+	margin: 20px 0;
+	position: absolute;
+	//right:0;
+	left: 400;
 	//float: left;
 }
+
+.gamecard {
+	background-image: url("/assets/images/landscape_tiles/painted_terrain_tiles_desert_sheet1.png");
+	width: 128px;
+	height: 192px;
+	margin: 0 10px;
+	background-repeat: no-repeat;
+	background-size: 1024px 1020px;
+	padding-top: 100px;
+	text-align: center;
+	//256x384 //bg size
+}
+
+.gamecard a {
+	padding: 20px 10px;
+	font-size: 32px;
+	text-align: center;
+	color: #FFF;
+	font-weight: bold;
+	text-shadow: 4px 4px #663333;
+}
+
+.gamecard a:hover {
+	text-decoration: none;
+	background-color:  #333;
+	background-color:  rgba(25, 0, 0, 0.5);
+}
+
+.card_btn {
+	//border: 1px solid red;
+}
+
+.card_btn_dead {
+	color: #777;
+	background-color:  rgba(100, 50, 50, 0.5);
+}
+
+.card_btn:hover {
+	background-color:  #333;
+	background-color:  rgba(25, 0, 0, 0.5);
+}
+
+.shovel {
+	background-image: url("/assets/images/sprites/modern_91_t.PNG");
+}
+
+.good_point {
+	background-image: url("/assets/images/sprites/modern_91_t.PNG");
+	background-repeat: no-repeat;
+	background-size: 32px 32px;
+	width: 32px;
+	height: 32px;
+	margin: 0 0 0 20px;
+	float: left;
+	font-size: 0;
+}
+
+
+

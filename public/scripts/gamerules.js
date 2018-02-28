@@ -46,12 +46,18 @@ var gameLevel = function(level) {
 
 var setUpBoard = function(words){
 		$("#card_field").empty();
+		$("#card_gui").empty();
 		words.sort(function(a, b){return 0.5 - Math.random()});
 		words = words.slice(0,4);
 		var answerWord = words[Math.floor(Math.random()*4)].value;
-		$("#card_field").append('<a class="btn btn-success btn-lg" value="'+answerWord+'" href="#">🔊</a> ');//put button
+		$("#card_gui").append('<div class=""><a class="btn btn-success btn-lg" value="'+answerWord+'" href="#">🔊</a></div>');//put button
 		$.each(words, function(i, word) {
-			$("#card_field").append('<a class="btn btn-primary card_btn" value="'+word.value+'" href="#">'+word.value+'</a> ');//put button
+			var card = $('<div class="gamecard"><a class="card_btn" value="'+word.value+'" href="#">'+word.value+'</a></div>');
+			var columnOffset = Math.floor(Math.random() * Math.floor(8));
+			var rowOffset = Math.floor(Math.random() * Math.floor(5));
+			card.css("background-position", (columnOffset * -128) + "px " + (rowOffset * -192) + "px");	
+
+			$("#card_field").append(card);//put button
 		});
 		
 		sound.play(answerWord);
