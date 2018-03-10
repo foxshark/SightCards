@@ -58,6 +58,7 @@ function levelCard(level) {
 				})
 				.fadeIn(300, function(){
 					//endLoot();
+					fanfare.play();
 					cycleRewards(rewardLoot);
 				})
 			); 

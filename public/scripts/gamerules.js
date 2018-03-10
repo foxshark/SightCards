@@ -44,13 +44,34 @@ var gameLevel = function(level) {
 	});
 }
 
-var setUpBoard = function(words){
+var setUpSounds = function() {
+	fanfare = new Howl({
+		src: ['assets/audio/fanfare.wav'],
+		loop: false,
+		volume: 0.25
+	});
+
+	swingHit = new Howl({
+		src: ['assets/audio/swing_hit.wav'],
+		loop: false,
+		volume: 0.25
+	});
+
+	swingMiss = new Howl({
+		src: ['assets/audio/swing_miss.wav'],
+		loop: false,
+		volume: 0.25
+	});
+}
+
+var setUpBoard = function(words) {
 		$("#card_field").empty();
 		$("#card_gui").empty();
 		words.sort(function(a, b){return 0.5 - Math.random()});
 		words = words.slice(0,4);
 		var answerWord = words[Math.floor(Math.random()*4)].value;
-		$("#card_gui").append('<div class=""><a class="btn btn-success btn-lg" value="'+answerWord+'" href="#">🔊</a></div>');//put button
+		//$("#card_gui").append('<div class=""><a class="btn btn-success btn-lg" value="'+answerWord+'" href="#">🔊</a></div>');//put button
+		$("#card_gui").append('<div class="npc_tile btn-success" value="'+answerWord+'"></div>');//put button
 		$.each(words, function(i, word) {
 			var card = $('<div class="gamecard"><a class="card_btn" value="'+word.value+'" href="#">'+word.value+'</a></div>');
 			var columnOffset = Math.floor(Math.random() * Math.floor(8));

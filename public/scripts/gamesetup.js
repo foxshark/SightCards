@@ -7,6 +7,9 @@ var numCorrect = 0;
 var numWrong = 0;
 var gameActive = false;
 var currentLevel = 0;
+var fanfare = null;
+var swingHit = null;
+var swingMiss = null;
 
 
 $(document).ready(function(){
@@ -21,10 +24,11 @@ $(document).ready(function(){
 			gameActive = false; //deactivate play controls once selection made
             sound.play($(this).attr("value"));
             if( $(this).attr("value") == answerWord) {
+            	swingHit.play();
             	numCorrect++;
             	$(this).attr({'disabled': true});
             	console.log('answewrWord = ' + numCorrect);
-            	if(numCorrect >= 10) {
+            	if(numCorrect >= 4) {
             		endLevel();
             	} else {
             		var scorePoint = $('<div class="good_point">*</div>');
@@ -41,6 +45,7 @@ $(document).ready(function(){
 					  
             	}
             } else {
+            	swingMiss.play();
             	numWrong++;
             	$(this).removeClass("card_btn");
             	$(this).addClass("card_btn_dead");
@@ -71,11 +76,22 @@ $(document).ready(function(){
 				return false;
 			}
         });
+
+	$('#scene_intro').on('click', '.start_button', function() {
+		endIntro();
+	});
+
 	$('#scene_game').hide();
 	$('#scene_loot').hide();
+	$('#scene_home').hide();
 	setUpLevels(9);
 	setUpInventory();
 });
+
+function endIntro() {
+	$('#scene_intro').hide();
+	$('#scene_home').show();	
+}
 
 function startLevel(level) {
 	gameLevel(level);
@@ -119,7 +135,7 @@ function setUpInventory(){
 
 		var numItems  = data.length;
 		var numLevels = levels.length;
-		var itemsPerLevel = Math.floor(numItems/numLevels);
+		var itemsPerLevel = Math.ceil(numItems/numLevels);
 		console.log("splitting array into " + numLevels);
 
 		// assign them to levels next
@@ -137,6 +153,7 @@ function setUpInventory(){
 }
 
 function setUpLevels(numLevels){
+	setUpSounds();
 	for(var x = 1; x < (numLevels + 1); x++) {
 		var card = new levelCard(x);
 		card.addToScene();

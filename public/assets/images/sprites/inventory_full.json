@@ -33,5 +33,10 @@
 	{ "icon":"Every Day Object 091", "file_name":"modern_91_t.png" },
 	{ "icon":"Every Day Object 093", "file_name":"modern_93_t.png" },
 	{ "icon":"Every Day Object 094", "file_name":"modern_94_t.png" },
-	{ "icon":"Every Day Object 099", "file_name":"modern_99_t.png" }
-]	
+	{ "icon":"Every Day Object 099", "file_name":"modern_99_t.png" },
+	{ "icon":"Every Day Object 116", "file_name":"N_116_t.png" },
+	{ "icon":"Every Day Object 124", "file_name":"N_124_t.png" },
+	{ "icon":"Every Day Object 128", "file_name":"N_128_t.png" },
+	{ "icon":"Every Day Object 129", "file_name":"N_129_t.png" },
+	{ "icon":"Every Day Object 098", "file_name":"N_98_t.png" }
+]
