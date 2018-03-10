@@ -21,16 +21,23 @@ html
             //-div#container.container.inner.cover
             div.col-6.offset-3
               div#scene_intro
-                div.npc_mast.row
-                  div.col-2
-                    div.npc_tile
-                  div.npc_text.col-10
-                    h1 Hello adventurer!
-                    p Please help me to find where to dig for the NINE hidden treasure chests by matching the clues to the words.
-                    hr
-                    p Press on the shovel when you are ready to begin.
-                    div.start_game
-                      div.start_button
+                div.npc_mast
+                  div.npc_text.row
+                    div.intro_npc.col-8.offset-2
+                      div.npc_tile
+                      h1 Hello adventurer!
+                      div.clearfix
+                      p Help me find the NINE hidden treasure chests. Please match the clues to the words, and we will find where the treasure chests are buried.
+                      div.start_game
+                        div#intro_card.row
+                          div.col-3
+                            div.gamecard.half
+                          div.col-3
+                            div.gamecard.half
+                          div.col-3
+                            div.gamecard.half
+                          div.col-3 
+                            div.gamecard.half
               div#scene_home.row
                   div#area_level.col-6
                   div#area_inventory.col-6
@@ -40,13 +47,18 @@ html
                   div#card_gui.col-2
                     div.npc_tile
                   div.npc_text.col-10
-                    p Listen to the clue
+                    //-p Listen to the clue
                     h1#score.cover-heading 
                 div#card_field.row
               div#scene_loot.row
                 div#area_treasure_box.col-3
                 div#area_loot_reveal.col-9
                 //-div#area_loot_reveal.col-9.row
+              div#scene_victory
+                div.npc_tile
+
+
+
     //-
       h1#score.cover-heading Listen & play
       div.button_test

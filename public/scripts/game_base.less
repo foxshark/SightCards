@@ -4,6 +4,10 @@ body {
 	background-image: url("/assets/images/grey_wash_wall.png");
 }
 
+.clearfix {
+	clear: both;
+}
+
 .vertical-center {
   min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
   min-height: 100vh; /* These two lines are counted as one :-)       */
@@ -26,16 +30,16 @@ body {
 }
 
 #area_level {
-	background-color: #444;
+	//background-color: #444;
 	padding:10px;
 	//background-image: url("/assets/images/desert_tile.png");
-	background-image: url("/assets/images/textured_paper.png");
+	//background-image: url("/assets/images/textured_paper.png");
 }
 
 #area_inventory {
 	padding: 10px;
-	background-color: purple;
-	background-image: url("/assets/images/grey_wash_wall.png");
+	//background-color: purple;
+	//background-image: url("/assets/images/grey_wash_wall.png");
 }
 
 .loot_sprite {
@@ -112,6 +116,13 @@ body {
 	//256x384 //bg size
 }
 
+.gamecard.half {
+	width: 64px;
+	height: 96px;
+	background-size: 512px 510px;
+	padding-top: 50px;
+}
+
 .gamecard a {
 	padding: 20px 10px;
 	font-size: 32px;
@@ -151,7 +162,7 @@ body {
 	background-size: 32px 32px;
 	width: 32px;
 	height: 32px;
-	margin: 0 0 0 20px;
+	margin: 20px 0 0 20px;
 	float: left;
 	font-size: 0;
 }
@@ -168,14 +179,15 @@ body {
 }
 
 .npc_mast p {
-	margin-bottom: 0px;
+	//margin-bottom: 0px;
+	text-align: justify;
 }
 
 .npc_mast .npc_text {
 	font-size: 22px;
 	text-align: left;
 	color: #FFF;
-	font-weight: bold;
+	font-weight: normal;
 	text-shadow: 2px 2px #663333;
 	margin-bottom: 0px;
 }
@@ -190,8 +202,20 @@ body {
 	background-size: 64px 64px;
 	width: 64px;
 	height: 64px;
-	margin: 0px auto;
-	//font-size: 0;
 }
 
+.intro_npc .npc_tile {
+	float: left;
+	margin: 0 20px 10px 0;
+}
 
+#box_ring {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+}
+
+#box_ring .npc_tile {
+	margin-left: -32px;
+	margin-top: -32px;
+}

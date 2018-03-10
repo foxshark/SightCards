@@ -39,7 +39,7 @@ $.get("assets/audio/speech_20180106031119366.marks", function(data) {
 		src: ['assets/audio/speech_20180106031107913.mp3'],
 		//autoplay: true,
 		loop: false,
-		volume: 0.5,
+		volume: 1,
 		onend: function() {
 			console.log('Finished!');
 		},

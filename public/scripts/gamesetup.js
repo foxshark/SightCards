@@ -7,10 +7,17 @@ var numCorrect = 0;
 var numWrong = 0;
 var gameActive = false;
 var currentLevel = 0;
+var completedLevels = 0;
 var fanfare = null;
 var swingHit = null;
 var swingMiss = null;
+var introSound = null;
 
+$('#scene_game').hide();
+$('#scene_loot').hide();
+$('#scene_home').hide();
+$('#scene_victory').hide();
+//$('#intro_card').hide();
 
 $(document).ready(function(){
 	$('.btn-primary').click(function() {
@@ -28,7 +35,7 @@ $(document).ready(function(){
             	numCorrect++;
             	$(this).attr({'disabled': true});
             	console.log('answewrWord = ' + numCorrect);
-            	if(numCorrect >= 4) {
+            	if(numCorrect >= 1) {
             		endLevel();
             	} else {
             		var scorePoint = $('<div class="good_point">*</div>');
@@ -77,18 +84,35 @@ $(document).ready(function(){
 			}
         });
 
-	$('#scene_intro').on('click', '.start_button', function() {
+	$('#scene_intro').on('click', '.gamecard', function() {
 		endIntro();
 	});
 
-	$('#scene_game').hide();
-	$('#scene_loot').hide();
-	$('#scene_home').hide();
 	setUpLevels(9);
 	setUpInventory();
+	playIntro(0,2);
 });
 
+function playIntro(columnOffset, rowOffset){
+	$("#intro_card").find(".gamecard").each(function(){
+		columnOffset = Math.floor(Math.random() * Math.floor(8));
+		rowOffset = Math.floor(Math.random() * Math.floor(5));
+		$(this).css("background-position", (columnOffset * -64) + "px " + (rowOffset * -96) + "px");	
+	});
+
+	introSound = new Howl({
+			src: ['assets/audio/intro_speech_auto.mp3'],
+			autoplay: true,
+			loop: false,
+			volume: 1,
+			onend: function() {
+				endIntro();
+			},
+		});
+}
+
 function endIntro() {
+	introSound.stop();
 	$('#scene_intro').hide();
 	$('#scene_home').show();	
 }
@@ -112,6 +136,7 @@ function endLevel() {
 }
 
 function startLoot() {
+	completedLevels++;
 	$('#scene_loot').show();
 	//$('scene_loot').hide();
 	//$('#scene_home').show();
@@ -121,7 +146,15 @@ function endLoot() {
 	$("#area_treasure_box").empty();
 	$("#area_loot_reveal").empty();	
 	$('#scene_loot').hide();
-	$('#scene_home').show();	
+	if(completedLevels >= 1) {//} levels.length) {
+		victory();
+	} else {
+		$('#scene_home').show();	
+	}
+}
+
+function victory() {
+	$('#scene_victory').show();
 }
 
 function setUpInventory(){
