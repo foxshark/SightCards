@@ -19,25 +19,25 @@ html
           div.row.vertical-center
             //- new stuff
             //-div#container.container.inner.cover
-            div.col-6.offset-3
+            div.col-6.offset-3.container_box
               div#scene_intro
                 div.npc_mast
-                  div.npc_text.row
-                    div.intro_npc.col-8.offset-2
+                  div.npc_text
+                    div.intro_npc
                       div.npc_tile
                       h1 Hello adventurer!
                       div.clearfix
-                      p Help me find the NINE hidden treasure chests. Please match the clues to the words, and we will find where the treasure chests are buried.
-                      div.start_game
-                        div#intro_card.row
-                          div.col-3
-                            div.gamecard.half
-                          div.col-3
-                            div.gamecard.half
-                          div.col-3
-                            div.gamecard.half
-                          div.col-3 
-                            div.gamecard.half
+                div.start_game
+                    p.call_to_action Help me find the NINE hidden treasure chests. Please match the clues to the words, and we will find where the treasure chests are buried.
+                    div#intro_card.row
+                      div.col-2.offset-2
+                        div.gamecard.half
+                      div.col-2
+                        div.gamecard.half
+                      div.col-2
+                        div.gamecard.half
+                      div.col-2 
+                        div.gamecard.half
               div#scene_home.row
                   div#area_level.col-6
                   div#area_inventory.col-6
