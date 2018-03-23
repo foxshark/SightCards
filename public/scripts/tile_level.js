@@ -10,9 +10,15 @@ function levelCard(level) {
 	var gameDifficulty = 1; 
 
 	this.addToScene = function() {
-		this.cardContent = $('<a class="treasure_box xtreasure_box_card level_btn" value="'+level+'" href="#"></a> ');
+		this.cardContent = $('<a class="treasure_box level_btn" value="'+level+'" href="#"></a> ');
 		this.cardContent.css("background-image", 'url("' + treasureBoxSpritePath +'")');
 		$("#area_level").append(this.cardContent);
+	}
+
+	this.addToVictory = function(){
+		this.cardContent = $('<div class="treasure_box victory_box"></div> ');
+		this.cardContent.css("background-image", 'url("' + treasureBoxSpritePath +'")');
+		$("#victory_showcase").append(this.cardContent);
 	}
 
 	this.calculateScore = function(numWrong) {

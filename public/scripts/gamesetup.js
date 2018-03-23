@@ -12,6 +12,7 @@ var fanfare = null;
 var swingHit = null;
 var swingMiss = null;
 var introSound = null;
+var gameOver = null;
 
 $('#scene_game').hide();
 $('#scene_loot').hide();
@@ -35,13 +36,17 @@ $(document).ready(function(){
             	numCorrect++;
             	$(this).attr({'disabled': true});
             	console.log('answewrWord = ' + numCorrect);
-            	if(numCorrect >= 1) {
+            	if(numCorrect >= 6) {
             		endLevel();
             	} else {
             		var scorePoint = $('<div class="good_point">*</div>');
-					$("#score").append(scorePoint);//put button
 					//answerWord = setUpBoard(words);  	
-            		
+					if(numCorrect <= 1) {
+						$("#score").html(scorePoint);
+					} else {
+						$("#score").append(scorePoint);
+					}
+
 					scorePoint
 					  .animate({marginLeft: "-2px"}, 200)
 					  .delay(300)
@@ -58,14 +63,8 @@ $(document).ready(function(){
             	$(this).addClass("card_btn_dead");
             	//or just do this:
             	$(this).hide();
-            	$('#score')
-				  .animate({color:'red'}, 200)
-				  .delay(30)
-				  .animate({color:'white'}, 100, function(){
-				  	gameActive = true;
-				  });
+            	gameActive = true;
             }
-            //$("#score").html("Score "+numCorrect+"😄 "+numWrong+"😖");
         }
     });
 
@@ -87,6 +86,11 @@ $(document).ready(function(){
 	$('#scene_intro').on('click', '.gamecard', function() {
 		endIntro();
 	});
+
+	$('#scene_victory').on('click', '#play_again', function() {
+		location.reload();
+	});
+
 
 	setUpLevels(9);
 	setUpInventory();
@@ -120,13 +124,13 @@ function endIntro() {
 function startLevel(level) {
 	gameLevel(level);
 	currentLevel = level;
-	$("#score").empty();
 	$('#scene_home').hide();
 	$('#scene_game').show();
 }
 
 function endLevel() {
 	$('#scene_game').hide();
+	$("#score").empty();
 	//$('#scene_home').show();
 	console.log("end level: "+currentLevel);
 	levels[(currentLevel-1)].calculateScore(numWrong);
@@ -146,7 +150,7 @@ function endLoot() {
 	$("#area_treasure_box").empty();
 	$("#area_loot_reveal").empty();	
 	$('#scene_loot').hide();
-	if(completedLevels >= 1) {//} levels.length) {
+	if(completedLevels >= levels.length) {
 		victory();
 	} else {
 		$('#scene_home').show();	
@@ -155,9 +159,12 @@ function endLoot() {
 
 function victory() {
 	$('#scene_victory').show();
+	gameOver.play();
+	setUpVictory();
+	cycleVictory();
 }
 
-function setUpInventory(){
+function setUpInventory() {
 	$.get("assets/images/sprites/inventory.json", function(data) {
 		var items = [];
 		$.each(data, function(i, spriteData){

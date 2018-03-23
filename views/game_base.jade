@@ -1,9 +1,8 @@
 html
   head
-    title=title
+    title Sight Cards
     link(href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm", crossorigin="anonymous", rel='stylesheet')
     link(href="/scripts/game_base.less", rel="stylesheet")
-    //-link(href="/scripts/cover.css", rel="stylesheet") 
 
   body
     div.site-wrapper
@@ -11,22 +10,14 @@ html
         div.cover-container
           div.masthead.clearfix
             div.inner
-              //-h3.masthead-brand SightCards
-              //- nav.nav.nav-masthead
-                a(href="#").nav-link.active Home
-                a(href="#").nav-link Features
-                a(href="#").nav-link Contact
           div.row.vertical-center
-            //- new stuff
-            //-div#container.container.inner.cover
             div.col-6.offset-3.container_box
               div#scene_intro
-                div.npc_mast
-                  div.npc_text
-                    div.intro_npc
-                      div.npc_tile
-                      h1 Hello adventurer!
-                      div.clearfix
+                div.npc_mast.row
+                  div.npc_image.col-2
+                    div.npc_avatar
+                  div.npc_text.col-10
+                    h1 Hello adventurer!
                 div.start_game
                     p.call_to_action Help me find the NINE hidden treasure chests. Please match the clues to the words, and we will find where the treasure chests are buried.
                     div#intro_card.row
@@ -42,20 +33,28 @@ html
                   div#area_level.col-6
                   div#area_inventory.col-6
               div#scene_game
-                //-Listen & play
                 div.npc_mast.row
-                  div#card_gui.col-2
-                    div.npc_tile
+                  div.npc_image.col-2
+                    div#card_gui.btn-success.npc_avatar
                   div.npc_text.col-10
-                    //-p Listen to the clue
-                    h1#score.cover-heading 
+                    h1#score Find to the clue
+                div.clearfix
                 div#card_field.row
               div#scene_loot.row
                 div#area_treasure_box.col-3
                 div#area_loot_reveal.col-9
                 //-div#area_loot_reveal.col-9.row
               div#scene_victory
-                div.npc_tile
+                div.npc_mast.row
+                  div.npc_image.col-2
+                    div.npc_avatar
+                  div.npc_text.col-10
+                    h1 Good job!
+                div.row
+                  div#victory_showcase.col-10.offset-1
+                div#game_over
+                  button#play_again.btn.btn-success Play Again
+
 
 
 

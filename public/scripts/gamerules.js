@@ -42,6 +42,12 @@ var gameLevel = function(level) {
 
 var setUpSounds = function() {
 	fanfare = new Howl({
+		src: ['assets/audio/finale.wav'],
+		loop: false,
+		volume: 0.25
+	});
+
+	gameOver = new Howl({
 		src: ['assets/audio/fanfare.wav'],
 		loop: false,
 		volume: 0.25
@@ -61,24 +67,47 @@ var setUpSounds = function() {
 }
 
 var setUpBoard = function(words) {
-		$("#card_field").empty();
-		$("#card_gui").empty();
-		words.sort(function(a, b){return 0.5 - Math.random()});
-		words = words.slice(0,4);
-		var answerWord = words[Math.floor(Math.random()*4)].value;
-		//$("#card_gui").append('<div class=""><a class="btn btn-success btn-lg" value="'+answerWord+'" href="#">🔊</a></div>');//put button
-		$("#card_gui").append('<div class="npc_tile btn-success" value="'+answerWord+'"></div>');//put button
-		$.each(words, function(i, word) {
-			var card = $('<div class="gamecard"><a class="card_btn" value="'+word.value+'" href="#">'+word.value+'</a></div>');
-			var columnOffset = Math.floor(Math.random() * Math.floor(8));
-			var rowOffset = Math.floor(Math.random() * Math.floor(5));
-			card.css("background-position", (columnOffset * -128) + "px " + (rowOffset * -192) + "px");	
+	$("#card_field").empty();
+	words.sort(function(a, b){return 0.5 - Math.random()});
+	words = words.slice(0,4);
+	var answerWord = words[Math.floor(Math.random()*4)].value;
+	$("#card_gui").attr("value", answerWord);//set NPC button word
+	$.each(words, function(i, word) {
+		var card = $('<div class="gamecard"><a class="card_btn" value="'+word.value+'" href="#">'+word.value+'</a></div>');
+		var columnOffset = Math.floor(Math.random() * Math.floor(8));
+		var rowOffset = Math.floor(Math.random() * Math.floor(5));
+		card.css("background-position", (columnOffset * -128) + "px " + (rowOffset * -192) + "px");	
+		$("#card_field").append($('<div class="col-3"></div>').append(card));//put button
+	});
+	
+	sound.play(answerWord);
+	gameActive = true;
 
-			$("#card_field").append(card);//put button
-		});
-		
-		sound.play(answerWord);
-		gameActive = true;
+	return answerWord;
+}
 
-		return answerWord;
+var setUpVictory = function() {
+	$("#victory_showcase").empty();
+	for(var x = 1; x < (9 + 1); x++) {
+		var card = new levelCard(x);
+		card.addToVictory();
+		levels.push(card);
+	}
+}
+
+var cycleVictory = function()
+	{
+		var vBoxes = $(".victory_box");
+		vBoxes
+			.delay(500)
+			.fadeOut(200, function(){
+				vBoxes.addClass("opened")
+			})
+			.fadeIn(200)
+			.delay(500)
+			.fadeOut(200, function(){
+				vBoxes.removeClass("opened")
+				cycleVictory();
+			})
+			.fadeIn(200);
 	}

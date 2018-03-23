@@ -26,8 +26,11 @@ body {
 }
 
 #scene_loot {
-	border: 3px solid #333;
 	background-image: url("/assets/images/desert_tile.png");
+}
+
+#scene_game {
+	margin-bottom: 20px;
 }
 
 #area_level {
@@ -63,7 +66,8 @@ body {
 	background-repeat: no-repeat;
 	//background-position: center;
 	margin: 20px 4px;
-	float: left;
+	//float: left;
+	display: inline-block;
 	background-position: 0px -90px; //default to closed
 }
 
@@ -109,7 +113,7 @@ body {
 	background-image: url("/assets/images/landscape_tiles/painted_terrain_tiles_desert_sheet1.png");
 	width: 128px;
 	height: 192px;
-	margin: 0 10px;
+	margin: 0; // 10px;
 	background-repeat: no-repeat;
 	background-size: 1024px 1020px;
 	padding-top: 100px;
@@ -163,61 +167,24 @@ body {
 	background-size: 32px 32px;
 	width: 32px;
 	height: 32px;
-	margin: 20px 0 0 20px;
+	margin: 12px 0 0 20px;
 	float: left;
 	font-size: 0;
 }
 
 .npc_mast {
-	margin: 0 auto 10px auto;
+	margin: 0 auto -40px auto;
 	position: relative;
 	top: -50px;
-	margin-bottom: -40px;
 	border: 4px solid #663333;
 	background-color: #985f3c;
 	width: 450px;
 	padding: 10px;
 }
 
-.intro_npc .npc_tile {
-	//float: left;
-	//position: fixed;
-	//top: 40px;
-	margin-bottom: -30px;
-}
-
-.intro_npc h1 {
-	//padding-left: 90px;
-	//clear:both;
-}
 
 #intro_card {
 	margin-bottom: 40px;
-}
-
-.npc_tile {
-	height: 64px;
-	width: 64px;
-	background-image: url("/assets/images/professor_desert.png");
-	border: 2px solid #663333;
-	margin: 10px;
-	position: relative;
-	top: -15px;
-	float: left;
-}
-
-.npc_mast p {
-	//margin-bottom: 0px;
-	text-align: justify;
-}
-
-.npc_mast .npc_text {
-	font-size: 22px;
-	text-align: left;
-	color: #FFF;
-	font-weight: normal;
-	text-shadow: 2px 2px #663333;
-	margin-bottom: 0px;
 }
 
 #score {
@@ -252,4 +219,37 @@ body {
 .container_box {
 	border: 4px solid #663333;
 	background-color: #ffeebb;
+}
+
+
+.npc_mast .npc_image {
+	margin: 0;
+	padding: 0;
+}
+ 
+.npc_mast .npc_avatar {
+	height: 64px;
+	width: 64px;
+	background-image: url("/assets/images/professor_desert.png");
+	border: 2px solid #663333;
+}
+
+.npc_mast .npc_text {
+	font-size: 22px;
+	text-align: left;
+	color: #FFF;
+	font-weight: normal;
+	text-shadow: 2px 2px #663333;
+	margin: 5px 0 0 0;
+}
+
+#game_over {
+	width: 100%;
+	margin: 0 auto 20px auto;
+	text-align: center;
+}
+
+#victory_showcase {
+	text-align: center;
+	margin-bottom: 30px;
 }
